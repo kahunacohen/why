@@ -2,8 +2,8 @@ flowchart TD
   O1["Chest pain"]
   O2["Shortness of breath"]
 
-  A1["Triage"]
-  O6["Difficulty speaking"]
+  A1["Visual triage assessment"]
+  O6["Difficulty speaking in full sentences"]
   O7["Anxious"]
   O8["Sweating"]
 
@@ -11,12 +11,12 @@ flowchart TD
   O3["Blood pressure: 120/80"]
   O4["Pulse: 110"]
   O5["Temperature: 37.2"]
-  O8["Respiratory rate: 24"]
-  O9["Oxygen saturation: 93%"]
+  O9["Respiratory rate: 24"]
+  O10["Oxygen saturation: 93%"]
 
   H1["Panic attack"]
   H2["Pulmonary embolism"]
-  H3["Heart Attack"]
+  H3["Acute coronary syndrome"]
   
   classDef obs fill:#efe,stroke:#5a5;
   classDef action fill:#eef,stroke:#55f;
@@ -31,6 +31,7 @@ flowchart TD
   class O7 obs
   class O8 obs
   class O9 obs
+  class O10 obs
   class A1 action
   class A2 action
   class H1 hyo
