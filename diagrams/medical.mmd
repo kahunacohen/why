@@ -1,39 +1,35 @@
 flowchart TD
+
+  %% Initial observations
   O1["Chest pain"]
   O2["Shortness of breath"]
 
+  %% Actions
   A1["Visual triage assessment"]
+  A2["Measure vitals"]
+
+  %% Visual triage observations (produced by A1)
   O6["Difficulty speaking in full sentences"]
   O7["Anxious"]
   O8["Sweating"]
 
-  O6 -->|suggests| H1
-  O7 -->|suggests| H1
-  O6 -->|suggests| H1
-  O6 -->|suggests| H2
-  O7 -->|suggests| H2
-  O6 -->|suggests| H2
-  O6 -->|suggests| H3
-  O7 -->|suggests| H3
-  O6 -->|suggests| H3
-
-  O3 -->|suggests| H1
-  O4 -->|suggests| H1
-  O5 -->|suggests| H1
-  O9 -->|suggests| H1
-  O10 -->|suggests| H1
-
-
-  A2["Measure vitals"]
+  %% Vital sign observations (produced by A2)
   O3["Blood pressure: 120/80"]
   O4["Pulse: 110"]
   O5["Temperature: 37.2"]
   O9["Respiratory rate: 24"]
   O10["Oxygen saturation: 93%"]
 
+  %% Hypotheses
+  H1["Pulmonary embolism"]
+  H2["pneumonia"]
+  H3["Panic attack"]
+
+  %% Initial observations motivate actions
   O1 -->|motivates| A1
   O2 -->|motivates| A1
 
+  %% Actions produce observations
   A1 -->|produces| O6
   A1 -->|produces| O7
   A1 -->|produces| O8
@@ -44,29 +40,25 @@ flowchart TD
   A2 -->|produces| O9
   A2 -->|produces| O10
 
-  H1["Pulmonary embolism"]
-  H2["pneumonia"]
-  H3["Panic attack"]
-  
-  classDef obs fill:#efe,stroke:#5a5;
-  classDef action fill:#eef,stroke:#55f;
+  %% Observations suggest hypotheses
+  O6 -->|suggests| H1
+  O7 -->|suggests| H1
+  O3 -->|suggests| H1
+  O4 -->|suggests| H1
+  O5 -->|suggests| H1
+  O9 -->|suggests| H1
+  O10 -->|suggests| H1
+
+  O6 -->|suggests| H2
+  O7 -->|suggests| H2
+
+  O6 -->|suggests| H3
+  O7 -->|suggests| H3
+
+  classDef obs fill:#efe,stroke:#5a5
+  classDef action fill:#eef,stroke:#55f
   classDef hyp fill:#ffd,stroke:#aa5
 
-  class O1 obs
-  class O2 obs
-  class O3 obs
-  class O4 obs
-  class O5 obs
-  class O6 obs
-  class O7 obs
-  class O8 obs
-  class O9 obs
-  class O10 obs
-  class A1 action
-  class A2 action
-  class H1 hyp
-  class H2 hyp
-  class H3 hyp
-
-
-
+  class O1,O2,O3,O4,O5,O6,O7,O8,O9,O10 obs
+  class A1,A2 action
+  class H1,H2,H3 hyp
