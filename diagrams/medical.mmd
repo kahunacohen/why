@@ -1,8 +1,10 @@
 flowchart TD
 
   %% Initial observations
-  O1["Chest pain"]
-  O2["Shortness of breath"]
+  subgraph initial["Initial complaints"]
+    O1["Chest pain"]
+    O2["Shortness of breath"]
+  end
 
   %% Actions
   A1["Visual triage assessment"]
