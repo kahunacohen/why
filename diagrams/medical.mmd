@@ -14,9 +14,9 @@ flowchart TD
   O8["Sweating"]
 
   %% Vital sign observations (produced by A2)
-  O3["Blood pressure: 120/80"]
+  O3["Blood pressure: 150/95"]
   O4["Pulse: 110"]
-  O5["Temperature: 37.2"]
+  O5["Temperature: 37.8"]
   O9["Respiratory rate: 24"]
   O10["Oxygen saturation: 93%"]
 
@@ -24,6 +24,7 @@ flowchart TD
   H1["Pulmonary embolism"]
   H2["pneumonia"]
   H3["Panic attack"]
+  H4["Acute coronary syndrome"]
 
   %% Initial observations motivate actions
   O1 -->|motivates| A1
@@ -41,19 +42,10 @@ flowchart TD
   A2 -->|produces| O10
 
   %% Observations suggest hypotheses
-  O6 -->|suggests| H1
-  O7 -->|suggests| H1
-  O3 -->|suggests| H1
-  O4 -->|suggests| H1
-  O5 -->|suggests| H1
-  O9 -->|suggests| H1
-  O10 -->|suggests| H1
+  O1 -->|suggests| H4
 
-  O6 -->|suggests| H2
-  O7 -->|suggests| H2
+  %% Observations against hypotheses
 
-  O6 -->|suggests| H3
-  O7 -->|suggests| H3
 
   classDef obs fill:#efe,stroke:#5a5
   classDef action fill:#eef,stroke:#55f
