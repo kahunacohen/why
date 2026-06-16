@@ -1,44 +1,50 @@
 flowchart TD
 
-  %% Initial observations
+  %% =========================
+  %% INITIAL PRESENTATION
+  %% =========================
   subgraph initial["Initial complaints"]
     O1["Chest pain"]
     O2["Shortness of breath"]
   end
 
-  %% Actions
-  A1["Visual triage assessment"]
-  A2["Measure vitals"]
+  %% =========================
+  %% ACTIONS
+  %% =========================
+  subgraph actions["Clinical actions"]
+    A1["Visual triage assessment"]
+    A2["Measure vitals"]
+  end
 
-  O1 -->|motivates| A2 
-  O2 -->|motivates| A2
-
-  %% Visual triage observations (produced by A1)
-  O6["Difficulty speaking in full sentences"]
-  O7["Anxious"]
-  O8["Sweating"]
-
-  %% Vital sign observations (produced by A2)
-  O3["Blood pressure: 150/95"]
-  O4["Pulse: 110"]
-  O5["Temperature: 37.8"]
-  O9["Respiratory rate: 24"]
-  O10["Oxygen saturation: 93%"]
-
-  %% Hypotheses
-  H1["Pulmonary embolism"]
-  H2["pneumonia"]
-  H3["Panic attack"]
-  H4["Acute coronary syndrome"]
-
-  %% Initial observations motivate actions
+  %% Initial complaints motivate actions
   O1 -->|motivates| A1
   O2 -->|motivates| A1
+  O1 -->|motivates| A2
+  O2 -->|motivates| A2
 
-  %% Actions produce observations
+  %% =========================
+  %% VISUAL TRIAGE OBSERVATIONS
+  %% =========================
+  subgraph visual["Visual triage observations"]
+    O6["Difficulty speaking in full sentences"]
+    O7["Anxious"]
+    O8["Sweating"]
+  end
+
   A1 -->|produces| O6
   A1 -->|produces| O7
   A1 -->|produces| O8
+
+  %% =========================
+  %% VITAL SIGNS
+  %% =========================
+  subgraph vitals["Vital sign observations"]
+    O3["Blood pressure: 150/95"]
+    O4["Pulse: 110"]
+    O5["Temperature: 37.8"]
+    O9["Respiratory rate: 24"]
+    O10["Oxygen saturation: 93%"]
+  end
 
   A2 -->|produces| O3
   A2 -->|produces| O4
@@ -46,27 +52,34 @@ flowchart TD
   A2 -->|produces| O9
   A2 -->|produces| O10
 
-  %% Observations suggest hypotheses
-  %% chest pain can suggest all of these things.
+  %% =========================
+  %% HYPOTHESES
+  %% =========================
+  subgraph hypotheses["Differential diagnosis"]
+    H1["Pulmonary embolism"]
+    H2["Pneumonia"]
+    H3["Panic attack"]
+    H4["Acute coronary syndrome"]
+  end
+
+  %% Observations → hypotheses (unchanged semantics)
   O1 -->|suggests| H1
   O1 -->|suggests| H2
-  O1 -->|suggests| H4
   O1 -->|suggests| H3
+  O1 -->|suggests| H4
 
-  %% shortness of breath can also suggest all of these things.
   O2 -->|suggests| H1
   O2 -->|suggests| H2
-  O2 -->|suggests| H4
   O2 -->|suggests| H3
+  O2 -->|suggests| H4
 
-  %% What can suggest a panic attack?
   O3 -->|suggests| H3
-  O4 -->|suggests|H3
-  O9 -->|suggests|H3
+  O4 -->|suggests| H3
+  O9 -->|suggests| H3
 
-  %% Observations against hypotheses
-
-
+  %% =========================
+  %% STYLES
+  %% =========================
   classDef obs fill:#efe,stroke:#5a5
   classDef action fill:#eef,stroke:#55f
   classDef hyp fill:#ffd,stroke:#aa5
