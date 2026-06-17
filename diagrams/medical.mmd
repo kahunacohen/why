@@ -62,7 +62,7 @@ flowchart TD
     H4["Acute coronary syndrome"]
   end
 
-  %% Initial complaints → hypotheses
+  %% Initial complaints suggest → all hypotheses
   O1 -->|suggests| H1
   O1 -->|suggests| H2
   O1 -->|suggests| H3
@@ -73,7 +73,19 @@ flowchart TD
   O2 -->|suggests| H3
   O2 -->|suggests| H4
 
+  O3 -->|suggests| H1
+  O3 -->|suggests| H2
+  O3 -->|suggests| H3
+  O3 -->|suggests| H4
+
+
+
+
+
+  
+
   %% Vital signs → hypotheses
+  %% suggest panic attack
   O3 -->|suggests| H3
   O4 -->|suggests| H3
   O9 -->|suggests| H3
