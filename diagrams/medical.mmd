@@ -6,7 +6,11 @@ flowchart TD
   subgraph initial["Initial complaints"]
     O1["Chest pain"]
     O2["Shortness of breath"]
+    OP["Chest pain + Shortness of breath (combined presentation)"]
   end
+
+  O1 --> OP
+  O2 --> OP
 
   %% =========================
   %% CLINICAL ACTIONS
@@ -16,10 +20,8 @@ flowchart TD
     A2["Measure vitals"]
   end
 
-  O1 -->|motivates| A1
-  O2 -->|motivates| A1
-  O1 -->|motivates| A2
-  O2 -->|motivates| A2
+  OP -->|motivates| A1
+  OP -->|motivates| A2
 
   %% =========================
   %% OBSERVATIONS
@@ -42,15 +44,15 @@ flowchart TD
 
   end
 
-  A1 -->|produces| O6
-  A1 -->|produces| O7
-  A1 -->|produces| O8
+  A1 --> O6
+  A1 --> O7
+  A1 --> O8
 
-  A2 -->|produces| O3
-  A2 -->|produces| O4
-  A2 -->|produces| O5
-  A2 -->|produces| O9
-  A2 -->|produces| O10
+  A2 --> O3
+  A2 --> O4
+  A2 --> O5
+  A2 --> O9
+  A2 --> O10
 
   %% =========================
   %% DIFFERENTIAL DIAGNOSIS
@@ -62,30 +64,43 @@ flowchart TD
     H4["Acute coronary syndrome"]
   end
 
-  %% Initial complaints suggest → all hypotheses
-  O1 -->|suggests| H1
-  O1 -->|suggests| H2
-  O1 -->|suggests| H3
-  O1 -->|suggests| H4
+  %% Combined presentation → hypotheses
+  OP -->|suggests| H1
+  OP -->|suggests| H2
+  OP -->|suggests| H3
+  OP -->|suggests| H4
 
-  O2 -->|suggests| H1
-  O2 -->|suggests| H2
-  O2 -->|suggests| H3
-  O2 -->|suggests| H4
+  %% Visual cues → panic / stress pattern
+  O6 -->|suggests| H1
+  O6 -->|suggests| H2
+  O6 -->|suggests| H3
+  O6 -->|suggests| H4
 
+  O7 -->|suggests| H3
+  O7 -->|suggests| H1
+  O7 -->|suggests| H2
+  O7 -->|suggests| H4
+
+  O8 -->|suggests| H1
+  O8 -->|suggests| H2
+  O8 -->|suggests| H3
+  O8 -->|suggests| H4
+
+  %% Vital signs → hypotheses (cleaned grouping)
   O3 -->|suggests| H3
   O3 -->|suggests| H4
-  
-  %% Vital signs → hypotheses
-  %% suggest panic attack
+
   O4 -->|suggests| H3
-  O9 -->|suggests| H3
 
   O5 -->|suggests| H2
-  O5 -->|suggests| H1
+
   O9 -->|suggests| H1
   O9 -->|suggests| H2
+  O9 -->|suggests| H3
   O9 -->|suggests| H4
+
+  O10 -->|suggests| H1
+  O10 -->|suggests| H2
 
   %% =========================
   %% STYLES
@@ -94,6 +109,6 @@ flowchart TD
   classDef action fill:#eef,stroke:#55f
   classDef hyp fill:#ffd,stroke:#aa5
 
-  class O1,O2,O3,O4,O5,O6,O7,O8,O9,O10 obs
+  class O1,O2,OP,O3,O4,O5,O6,O7,O8,O9,O10 obs
   class A1,A2 action
   class H1,H2,H3,H4 hyp
