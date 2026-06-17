@@ -4,103 +4,50 @@ flowchart TD
   %% INITIAL PRESENTATION
   %% =========================
   subgraph initial["Initial complaints"]
-    O1["Chest pain"]
-    O2["Shortness of breath"]
-    OP["Chest pain + Shortness of breath (combined presentation)"]
+    C1["Chest pain"]
+    C2["Shortness of breath"]
   end
 
-  O1 --> OP
-  O2 --> OP
-
   %% =========================
-  %% CLINICAL ACTIONS
+  %% INVESTIGATIVE ACTIONS
   %% =========================
-  subgraph actions["Clinical actions"]
-    A1["Visual triage assessment"]
+  subgraph actions["Investigative actions"]
+    A1["Visual assessment"]
     A2["Measure vitals"]
   end
 
-  OP -->|motivates| A1
-  OP -->|motivates| A2
+  C1 -->|motivates| A1
+  C2 -->|motivates| A1
+  C1 -->|motivates| A2
+  C2 -->|motivates| A2
 
   %% =========================
   %% OBSERVATIONS
   %% =========================
-  subgraph observations["Clinical observations"]
-
-    subgraph visual["Visual triage observations"]
-      O6["Difficulty speaking in full sentences"]
-      O7["Anxious"]
-      O8["Sweating"]
-    end
-
-    subgraph vitals["Vital sign observations"]
-      O3["Blood pressure: 150/95"]
-      O4["Pulse: 110"]
-      O5["Temperature: 37.8"]
-      O9["Respiratory rate: 24"]
-      O10["Oxygen saturation: 93%"]
-    end
-
+  subgraph observations["Observations"]
+    O1["Respiratory distress"]
+    O2["Abnormal vitals"]
   end
 
-  A1 --> O6
-  A1 --> O7
-  A1 --> O8
-
-  A2 --> O3
-  A2 --> O4
-  A2 --> O5
-  A2 --> O9
-  A2 --> O10
+  A1 -->|produces| O1
+  A2 -->|produces| O2
 
   %% =========================
-  %% DIFFERENTIAL DIAGNOSIS
+  %% HYPOTHESES
   %% =========================
-  subgraph hypotheses["Differential diagnosis"]
-    H1["Pulmonary embolism"]
-    H2["Pneumonia"]
-    H3["Panic attack"]
-    H4["Acute coronary syndrome"]
+  subgraph hypotheses["Hypotheses"]
+    H1["Respiratory cause"]
+    H2["Cardiac cause"]
+    H3["Anxiety-related cause"]
   end
 
-  %% Combined presentation → hypotheses
-  OP -->|suggests| H1
-  OP -->|suggests| H2
-  OP -->|suggests| H3
-  OP -->|suggests| H4
+  %% Observations support multiple hypotheses
+  O1 -->|suggests| H1
+  O1 -->|suggests| H2
+  O1 -->|suggests| H3
 
-  %% Visual cues → panic / stress pattern
-  O6 -->|suggests| H1
-  O6 -->|suggests| H2
-  O6 -->|suggests| H3
-  O6 -->|suggests| H4
-
-  O7 -->|suggests| H3
-  O7 -->|suggests| H1
-  O7 -->|suggests| H2
-  O7 -->|suggests| H4
-
-  O8 -->|suggests| H1
-  O8 -->|suggests| H2
-  O8 -->|suggests| H3
-  O8 -->|suggests| H4
-
-  %% Vital signs → hypotheses (cleaned grouping)
-  O3 -->|suggests| H3
-  O3 -->|suggests| H4
-
-  O4 -->|suggests| H3
-
-  O5 -->|suggests| H2
-
-  O9 -->|suggests| H1
-  O9 -->|suggests| H2
-  O9 -->|suggests| H3
-  O9 -->|suggests| H4
-
-  O10 -->|suggests| H1
-  O10 -->|suggests| H2
+  O2 -->|suggests| H1
+  O2 -->|suggests| H2
 
   %% =========================
   %% STYLES
@@ -109,6 +56,6 @@ flowchart TD
   classDef action fill:#eef,stroke:#55f
   classDef hyp fill:#ffd,stroke:#aa5
 
-  class O1,O2,OP,O3,O4,O5,O6,O7,O8,O9,O10 obs
+  class C1,C2,O1,O2 obs
   class A1,A2 action
-  class H1,H2,H3,H4 hyp
+  class H1,H2,H3 hyp
