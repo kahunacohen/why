@@ -9,42 +9,42 @@ flowchart TD
   end
 
   %% =========================
-  %% ACTIONS
+  %% CLINICAL ACTIONS
   %% =========================
   subgraph actions["Clinical actions"]
     A1["Visual triage assessment"]
     A2["Measure vitals"]
   end
 
-  %% Initial complaints motivate actions
   O1 -->|motivates| A1
   O2 -->|motivates| A1
   O1 -->|motivates| A2
   O2 -->|motivates| A2
 
   %% =========================
-  %% VISUAL TRIAGE OBSERVATIONS
+  %% OBSERVATIONS
   %% =========================
-  subgraph visual["Visual triage observations"]
-    O6["Difficulty speaking in full sentences"]
-    O7["Anxious"]
-    O8["Sweating"]
+  subgraph observations["Clinical observations"]
+
+    subgraph visual["Visual triage observations"]
+      O6["Difficulty speaking in full sentences"]
+      O7["Anxious"]
+      O8["Sweating"]
+    end
+
+    subgraph vitals["Vital sign observations"]
+      O3["Blood pressure: 150/95"]
+      O4["Pulse: 110"]
+      O5["Temperature: 37.8"]
+      O9["Respiratory rate: 24"]
+      O10["Oxygen saturation: 93%"]
+    end
+
   end
 
   A1 -->|produces| O6
   A1 -->|produces| O7
   A1 -->|produces| O8
-
-  %% =========================
-  %% VITAL SIGNS
-  %% =========================
-  subgraph vitals["Vital sign observations"]
-    O3["Blood pressure: 150/95"]
-    O4["Pulse: 110"]
-    O5["Temperature: 37.8"]
-    O9["Respiratory rate: 24"]
-    O10["Oxygen saturation: 93%"]
-  end
 
   A2 -->|produces| O3
   A2 -->|produces| O4
@@ -53,7 +53,7 @@ flowchart TD
   A2 -->|produces| O10
 
   %% =========================
-  %% HYPOTHESES
+  %% DIFFERENTIAL DIAGNOSIS
   %% =========================
   subgraph hypotheses["Differential diagnosis"]
     H1["Pulmonary embolism"]
@@ -62,7 +62,7 @@ flowchart TD
     H4["Acute coronary syndrome"]
   end
 
-  %% Observations → hypotheses (unchanged semantics)
+  %% Initial complaints → hypotheses
   O1 -->|suggests| H1
   O1 -->|suggests| H2
   O1 -->|suggests| H3
@@ -73,6 +73,7 @@ flowchart TD
   O2 -->|suggests| H3
   O2 -->|suggests| H4
 
+  %% Vital signs → hypotheses
   O3 -->|suggests| H3
   O4 -->|suggests| H3
   O9 -->|suggests| H3
