@@ -1,16 +1,10 @@
 flowchart TD
 
-  %% =========================
-  %% INITIAL PRESENTATION
-  %% =========================
-  subgraph initial["Initial complaints"]
+  subgraph complaints["Initial complaints"]
     C1["Chest pain"]
     C2["Shortness of breath"]
   end
 
-  %% =========================
-  %% INVESTIGATIVE ACTIONS
-  %% =========================
   subgraph actions["Investigative actions"]
     A1["Visual assessment"]
     A2["Measure vitals"]
@@ -21,41 +15,28 @@ flowchart TD
   C1 -->|motivates| A2
   C2 -->|motivates| A2
 
-  %% =========================
-  %% OBSERVATIONS
-  %% =========================
   subgraph observations["Observations"]
     O1["Respiratory distress"]
-    O2["Abnormal vitals"]
+    O2["Tachycardia"]
+    O3["Low oxygen saturation"]
   end
 
   A1 -->|produces| O1
   A2 -->|produces| O2
+  A2 -->|produces| O3
 
-  %% =========================
-  %% HYPOTHESES
-  %% =========================
   subgraph hypotheses["Hypotheses"]
     H1["Respiratory cause"]
     H2["Cardiac cause"]
     H3["Anxiety-related cause"]
   end
 
-  %% Observations support multiple hypotheses
-  O1 -->|suggests| H1
-  O1 -->|suggests| H2
-  O1 -->|suggests| H3
+  O1 -->|supports| H1
+  O1 -->|supports| H2
 
-  O2 -->|suggests| H1
-  O2 -->|suggests| H2
+  O2 -->|supports| H1
+  O2 -->|supports| H2
+  O2 -->|supports| H3
 
-  %% =========================
-  %% STYLES
-  %% =========================
-  classDef obs fill:#efe,stroke:#5a5
-  classDef action fill:#eef,stroke:#55f
-  classDef hyp fill:#ffd,stroke:#aa5
-
-  class C1,C2,O1,O2 obs
-  class A1,A2 action
-  class H1,H2,H3 hyp
+  O3 -->|supports| H1
+  O3 -->|supports| H2
