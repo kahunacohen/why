@@ -1,28 +1,25 @@
 flowchart TD
 
-%% Initital complaints
+%% Initial complaints
 C1["Chest pain"]
 C2["Shortness of breath"]
-  
 
-%% Investigative actions"]
+%% Initial investigative actions
 A1["Visual assessment"]
 A2["Measure vitals"]
 
-
-%% Initial complaints motivate...
+%% Initial complaints motivate actions
 C1 -->|motivates| A1
 C2 -->|motivates| A1
 C1 -->|motivates| A2
 C2 -->|motivates| A2
 
-%% Observations
+%% Initial observations
 O1["Respiratory distress"]
 O2["Tachycardia"]
 O3["Low oxygen saturation"]
-  
 
-%% Measuring vitals produces observations
+%% Actions produce observations
 A1 -->|produces| O1
 A2 -->|produces| O2
 A2 -->|produces| O3
@@ -32,6 +29,7 @@ H1["Respiratory cause"]
 H2["Cardiac cause"]
 H3["Anxiety-related cause"]
 
+%% Observations support hypotheses
 O1 -->|supports| H1
 O1 -->|supports| H2
 
@@ -42,27 +40,31 @@ O2 -->|supports| H3
 O3 -->|supports| H1
 O3 -->|supports| H2
 
+%% Respiratory investigation
 A5["Lung auscultation"]
 A6["Chest X-ray"]
-H1 --> |motivates| A5
-H1 --> |motivates| A6
-  
+
+H1 -->|motivates| A5
+H1 -->|motivates| A6
+
+%% Cardiac investigation
 A3["ECG"]
 A4["Troponin test"]
 
-H2 --> |motivates| A3
-H2 --> |motivates| A4
+H2 -->|motivates| A3
+H2 -->|motivates| A4
 
+%% Patient history
 A7["Detailed patient history"]
-H3 --> |motivates| A7
-H2 --> |motivates| A7
+
+H3 -->|motivates| A7
+H2 -->|motivates| A7
 
 O5["Family mental health issues"]
-A7 --> |produces| O5
-O5 |supports| H3
+A7 -->|produces| O5
+O5 -->|supports| H3
 
-%% What the last test results produce.
-%% EEG
+%% ECG result
 O4["No ST elevation"]
-A3 --> |produces| O4
-O4 --weakens--> H2
+A3 -->|produces| O4
+O4 -->|weakens| H2
