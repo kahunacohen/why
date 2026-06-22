@@ -1,14 +1,14 @@
 flowchart TD
 
-  subgraph complaints["Initial complaints"]
-    C1["Chest pain"]
-    C2["Shortness of breath"]
-  end
+%% Initital complaints
+C1["Chest pain"]
+C2["Shortness of breath"]
+  
 
-  subgraph actions["Investigative actions"]
-    A1["Visual assessment"]
-    A2["Measure vitals"]
-  end
+%% Investigative actions"]
+A1["Visual assessment"]
+A2["Measure vitals"]
+
 
   C1 -->|motivates| A1
   C2 -->|motivates| A1
