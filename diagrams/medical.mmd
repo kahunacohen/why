@@ -10,26 +10,27 @@ A1["Visual assessment"]
 A2["Measure vitals"]
 
 
-  C1 -->|motivates| A1
-  C2 -->|motivates| A1
-  C1 -->|motivates| A2
-  C2 -->|motivates| A2
+%% Initial complaints motivate...
+C1 -->|motivates| A1
+C2 -->|motivates| A1
+C1 -->|motivates| A2
+C2 -->|motivates| A2
 
-  subgraph observations["Observations"]
-    O1["Respiratory distress"]
-    O2["Tachycardia"]
-    O3["Low oxygen saturation"]
-  end
+%% Observations
+O1["Respiratory distress"]
+O2["Tachycardia"]
+O3["Low oxygen saturation"]
+  
 
-  A1 -->|produces| O1
-  A2 -->|produces| O2
-  A2 -->|produces| O3
+%% Measuring vitals produces observations
+A1 -->|produces| O1
+A2 -->|produces| O2
+A2 -->|produces| O3
 
-  subgraph hypotheses["Hypotheses"]
-    H1["Respiratory cause"]
-    H2["Cardiac cause"]
-    H3["Anxiety-related cause"]
-  end
+%% Hypotheses
+H1["Respiratory cause"]
+H2["Cardiac cause"]
+H3["Anxiety-related cause"]
 
   O1 -->|supports| H1
   O1 -->|supports| H2
