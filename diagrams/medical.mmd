@@ -1,35 +1,46 @@
 flowchart TD
 
-%% Initial complaints
+%% =====================================================
+%% Initial presentation
+%% =====================================================
+
 C1["Chest pain"]
 C2["Shortness of breath"]
 
-%% Initial investigative actions
+%% =====================================================
+%% Initial investigation
+%% =====================================================
+
 A1["Visual assessment"]
 A2["Measure vitals"]
 
-%% Initial complaints motivate actions
 C1 -->|motivates| A1
 C2 -->|motivates| A1
+
 C1 -->|motivates| A2
 C2 -->|motivates| A2
 
+%% =====================================================
 %% Initial observations
+%% =====================================================
+
 O1["Respiratory distress"]
 O2["Tachycardia"]
 O3["Low oxygen saturation"]
 
-%% Actions produce observations
 A1 -->|produces| O1
+
 A2 -->|produces| O2
 A2 -->|produces| O3
 
-%% Hypotheses
+%% =====================================================
+%% Initial hypotheses
+%% =====================================================
+
 H1["Respiratory cause"]
 H2["Cardiac cause"]
 H3["Anxiety-related cause"]
 
-%% Observations support hypotheses
 O1 -->|supports| H1
 O1 -->|supports| H2
 
@@ -40,43 +51,55 @@ O2 -->|supports| H3
 O3 -->|supports| H1
 O3 -->|supports| H2
 
-%% Respiratory investigation
+%% =====================================================
+%% Follow-up actions motivated by hypotheses
+%% =====================================================
+
+A3["ECG"]
+A4["Troponin test"]
+
 A5["Lung auscultation"]
 A6["Chest X-ray"]
 
-H1 -->|motivates| A5
-H1 -->|motivates| A6
-
-%% Cardiac investigation
-A3["ECG"]
-A4["Troponin test"]
+A7["Detailed patient history"]
 
 H2 -->|motivates| A3
 H2 -->|motivates| A4
 
-%% Patient history
-A7["Detailed patient history"]
+H1 -->|motivates| A5
+H1 -->|motivates| A6
 
-H3 -->|motivates| A7
 H2 -->|motivates| A7
+H3 -->|motivates| A7
 
-O5["Family mental health issues"]
-A7 -->|produces| O5
-O5 -->|supports| H3
+%% =====================================================
+%% Follow-up observations
+%% =====================================================
 
-%% ECG result
 O4["No ST elevation"]
-A3 -->|produces| O4
-O4 -->|weakens| H2
-
 O6["Normal troponin"]
-A4 -->|produces| O6
-O6 -->|weakens| H2
 
 O7["Clear chest X-ray"]
-A6 -->|produces| O7
-O7 -->|weakens| H1
-
 O8["Clear breath sounds"]
+
+O5["Family mental health issues"]
+
+A3 -->|produces| O4
+A4 -->|produces| O6
+
+A6 -->|produces| O7
 A5 -->|produces| O8
+
+A7 -->|produces| O5
+
+%% =====================================================
+%% Evidence updates hypotheses
+%% =====================================================
+
+O4 -->|weakens| H2
+O6 -->|weakens| H2
+
+O7 -->|weakens| H1
 O8 -->|weakens| H1
+
+O5 -->|supports| H3
