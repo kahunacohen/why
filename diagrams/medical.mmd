@@ -52,7 +52,7 @@ O3 -->|supports| H1
 O3 -->|supports| H2
 
 %% =====================================================
-%% Follow-up actions motivated by hypotheses
+%% Follow-up actions
 %% =====================================================
 
 A3["ECG"]
@@ -79,10 +79,6 @@ H3 -->|motivates| A7
 O4["No ST elevation"]
 O6["Normal troponin"]
 
-O4 --> |weakens| H2
-O6 --> |weakens| H2
-
-
 O7["Clear chest X-ray"]
 O8["Clear breath sounds"]
 
@@ -108,22 +104,35 @@ O8 -->|weakens| H1
 
 O5 -->|supports| H3
 
+%% =====================================================
+%% Unexplained low oxygen saturation
+%% =====================================================
+
 A8["Detailed thromboembolic risk history"]
 
 H3 -->|does not explain well| O3
 O3 -->|motivates| A8
 
+%% =====================================================
+%% Additional risk-factor observations
+%% =====================================================
+
 O9["Recent long-haul flight"]
 O10["Recent calf pain"]
+
 A8 -->|produces| O9
 A8 -->|produces| O10
 
-O9 --> |supports| H1
-O10 --> |supports| H1
+%% =====================================================
+%% Refined hypothesis
+%% =====================================================
 
 H4["Pulmonary embolism"]
+
 H4 -->|specializes| H1
-O9 --> |supports| H4
-O10 --> |supports| H4
 
+O9 -->|supports| H1
+O10 -->|supports| H1
 
+O9 -->|supports| H4
+O10 -->|supports| H4
