@@ -4,28 +4,49 @@
 
 flowchart LR
 
+%% =====================================================
+%% Initial complaint
+%% =====================================================
+
 B1["After saving changes to a patient's care plan, the dashboard occasionally shows the old care plan. Refreshing the page fixes it. Reported by 3 nurses on the night shift."]
+
+%% =====================================================
+%% Initial hypotheses
+%% =====================================================
+
 H1["Write error?"]
 H2["Cache invalidation?"]
 
-B1 --> |supports| H1
-B1 --> |supports| H2
+B1 -->|supports| H1
+B1 -->|supports| H2
+
+%% =====================================================
+%% Investigating H1 — write error
+%% =====================================================
 
 A1["Check logs for write errors"]
-H1 --> |motivates| A1
+H1 -->|motivates| A1
 
-O1["No write errors"]
-A1 --> |produces| O1
-O1 --> |weakens| H1
+O1["No write errors in logs"]
+A1 -->|produces| O1
+O1 -->|weakens| H1
 
-H2--> |motivates| A2
+%% =====================================================
+%% Investigating H2 — cache invalidation
+%% =====================================================
 
 A2["Get details from nurse — what specifically did she change?"]
+H2 -->|motivates| A2
+
 A3["Check database for event row"]
-A2 --> |enables| A3 
+A2 -->|enables| A3
 
-O2["Event exists"]
-A3 --> |produces| O2
+O2["Event exists in database"]
+A3 -->|produces| O2
 
-O2 --> |refutes| H1
-O2 --> |supports| H2
+%% =====================================================
+%% Evidence updates hypotheses
+%% =====================================================
+
+O2 -->|refutes| H1
+O2 -->|supports| H2
