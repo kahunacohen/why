@@ -2,6 +2,11 @@
 %% Root cause: The care plan save endpoint updates a care_plan_notes table but doesn't touch the main care_plans record. The cache invalidation job checks care_plans.updated_at to decide what to evict. Since that timestamp never changes, the job skips it, and the cache keeps
 %% serving the old care plan.
 
-flowchart TD
+flowchart LR
 
 B1["After saving changes to a patient's care plan, the dashboard occasionally shows the old care plan. Refreshing the page fixes it. Reported by 3 nurses on the night shift."]
+H1["Write error"]
+H2["Cache invalidation"]
+
+B1 --> |motivates| H1
+B1 --> |motivates| H2
