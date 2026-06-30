@@ -69,9 +69,10 @@ H2 -->|motivates| A4
 O3["Job runs that invalidates cache on main care plan updated_at field"]
 A4 -->|produces| O3
 
-H3["Some users go to dashboard before invalidation cache job finishes"]
+H3["Race condition: update returns before job finsishes"]
 O3 --> |suggests| H3
 
 H3 --> |motivates| A5
 
-A5["Reproduce by going quickly to dashboard, while monitoring cache invalidation job"]
+A5["Reproduce by going quickly to dashboard, while monitoring cache invalidation job, then refresh"]
+A5 --> |confirms| H3
