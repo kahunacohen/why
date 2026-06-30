@@ -20,7 +20,7 @@ flowchart LR
 %% Initial complaint
 %% =====================================================
 
-B1["After saving changes to a patient's care plan, the dashboard occasionally shows the old care plan. Refreshing the page fixes it. Reported by 3 nurses on the night shift."]
+T1["After saving changes to a patient's care plan, the dashboard occasionally shows the old care plan. Refreshing the page fixes it. Reported by 3 nurses on the night shift."]
 
 %% =====================================================
 %% Initial hypotheses
@@ -29,8 +29,8 @@ B1["After saving changes to a patient's care plan, the dashboard occasionally sh
 H1["Write error?"]
 H2["Cache invalidation?"]
 
-B1 -->|supports| H1
-B1 -->|supports| H2
+T1 -->|supports| H1
+T1 -->|supports| H2
 
 %% =====================================================
 %% Investigating H1 — write error
@@ -74,6 +74,8 @@ H2 -->|motivates| A4
 O3["Job runs that invalidates cache on main care plan updated_at field"]
 A4 -->|produces| O3
 
+H2 -->|does not explain well| O3
+
 A5["Check updated date"]
 O3 -->|motivates| A5
 
@@ -87,10 +89,13 @@ O4 -->|weakens| H2
 %% =====================================================
 
 H3["Race condition: update returns before job finishes"]
+H3 -->|specializes| H2
 
-O3 -->|suggests| H3
+O3 -->|supports| H3
 
 A6["Reproduce by going quickly to dashboard, while monitoring cache invalidation job, then refresh"]
 
 H3 -->|motivates| A6
-A6 -->|confirms| H3
+
+Conc1["Race condition: save returns before cache invalidation completes"]
+A6 -->|confirms| Conc1

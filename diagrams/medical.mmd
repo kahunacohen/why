@@ -4,8 +4,8 @@ flowchart TD
 %% Initial presentation
 %% =====================================================
 
-C1["Chest pain"]
-C2["Shortness of breath"]
+T1["Chest pain"]
+T2["Shortness of breath"]
 
 %% =====================================================
 %% Initial investigation
@@ -14,11 +14,11 @@ C2["Shortness of breath"]
 A1["Visual assessment"]
 A2["Measure vitals"]
 
-C1 -->|motivates| A1
-C2 -->|motivates| A1
+T1 -->|motivates| A1
+T2 -->|motivates| A1
 
-C1 -->|motivates| A2
-C2 -->|motivates| A2
+T1 -->|motivates| A2
+T2 -->|motivates| A2
 
 %% =====================================================
 %% Initial observations
@@ -139,5 +139,5 @@ O10 -->|supports| H4
 A9["CT pulmonary angiography"]
 H4 --> |motivates| A9
 
-C1["Pulmonary embolism"]
-A9 --> |confirms| C1
+Conc1["Pulmonary embolism"]
+A9 --> |confirms| Conc1
